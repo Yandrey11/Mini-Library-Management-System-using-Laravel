@@ -1,5 +1,4 @@
 import { Head, Link, usePage } from '@inertiajs/react';
-import AppLayout from '@/layouts/app-layout';
 import { Button } from '@/components/ui/button';
 import {
     Card,
@@ -8,11 +7,12 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
+import AppLayout from '@/layouts/app-layout';
+import { dashboard } from '@/routes';
 import {
     edit as editRoute,
     index as indexRoute,
 } from '@/routes/borrow-records';
-import { dashboard } from '@/routes';
 import type { BreadcrumbItem } from '@/types';
 
 interface Book {

@@ -50,56 +50,56 @@ export default function Dashboard() {
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5">
                     <Link
                         href="/students"
-                        className="block rounded-lg border bg-card p-6 shadow-sm transition hover:shadow-md"
+                        className="block rounded-2xl border border-stone-200/60 bg-white/90 p-6 shadow-sm transition hover:border-amber-200 hover:shadow-md dark:border-stone-800 dark:bg-stone-900/50 dark:hover:border-amber-900/50"
                     >
-                        <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
+                        <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">
                             {stats.students}
                         </div>
-                        <div className="text-sm text-muted-foreground">Students</div>
+                        <div className="text-sm text-stone-600 dark:text-stone-400">Students</div>
                     </Link>
                     <Link
                         href="/books"
-                        className="block rounded-lg border bg-card p-6 shadow-sm transition hover:shadow-md"
+                        className="block rounded-2xl border border-stone-200/60 bg-white/90 p-6 shadow-sm transition hover:border-amber-200 hover:shadow-md dark:border-stone-800 dark:bg-stone-900/50 dark:hover:border-amber-900/50"
                     >
-                        <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+                        <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">
                             {stats.books}
                         </div>
-                        <div className="text-sm text-muted-foreground">Books</div>
+                        <div className="text-sm text-stone-600 dark:text-stone-400">Books</div>
                     </Link>
                     <Link
                         href="/authors"
-                        className="block rounded-lg border bg-card p-6 shadow-sm transition hover:shadow-md"
+                        className="block rounded-2xl border border-stone-200/60 bg-white/90 p-6 shadow-sm transition hover:border-amber-200 hover:shadow-md dark:border-stone-800 dark:bg-stone-900/50 dark:hover:border-amber-900/50"
                     >
                         <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">
                             {stats.authors}
                         </div>
-                        <div className="text-sm text-muted-foreground">Authors</div>
+                        <div className="text-sm text-stone-600 dark:text-stone-400">Authors</div>
                     </Link>
                     <Link
                         href="/borrow-records"
-                        className="block rounded-lg border bg-card p-6 shadow-sm transition hover:shadow-md"
+                        className="block rounded-2xl border border-stone-200/60 bg-white/90 p-6 shadow-sm transition hover:border-amber-200 hover:shadow-md dark:border-stone-800 dark:bg-stone-900/50 dark:hover:border-amber-900/50"
                     >
-                        <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                        <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">
                             {stats.active_borrows}
                         </div>
-                        <div className="text-sm text-muted-foreground">Active Borrows</div>
+                        <div className="text-sm text-stone-600 dark:text-stone-400">Active Borrows</div>
                     </Link>
-                    <div className="block rounded-lg border bg-card p-6 shadow-sm">
+                    <div className="block rounded-2xl border border-stone-200/60 bg-white/90 p-6 shadow-sm dark:border-stone-800 dark:bg-stone-900/50">
                         <div
                             className={`text-2xl font-bold ${
                                 stats.overdue_borrows > 0
                                     ? 'text-red-600 dark:text-red-400'
-                                    : 'text-muted-foreground'
+                                    : 'text-stone-600 dark:text-stone-400'
                             }`}
                         >
                             {stats.overdue_borrows}
                         </div>
-                        <div className="text-sm text-muted-foreground">Overdue</div>
+                        <div className="text-sm text-stone-600 dark:text-stone-400">Overdue</div>
                     </div>
                 </div>
 
-                <div className="rounded-lg border bg-card shadow-sm">
-                    <div className="border-b p-6">
+                <div className="rounded-2xl border border-stone-200/60 bg-white/90 shadow-sm dark:border-stone-800 dark:bg-stone-900/50">
+                    <div className="border-b border-stone-200/60 p-6 dark:border-stone-800">
                         <h3 className="text-lg font-medium">Recent Borrow Records</h3>
                     </div>
                     <div className="p-6">

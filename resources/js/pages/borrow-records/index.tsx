@@ -1,5 +1,4 @@
 import { Head, Link, router, usePage } from '@inertiajs/react';
-import AppLayout from '@/layouts/app-layout';
 import { Button } from '@/components/ui/button';
 import {
     Card,
@@ -8,6 +7,8 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
+import AppLayout from '@/layouts/app-layout';
+import { dashboard } from '@/routes';
 import {
     create as createRoute,
     destroy,
@@ -15,7 +16,6 @@ import {
     index as indexRoute,
     show as showRoute,
 } from '@/routes/borrow-records';
-import { dashboard } from '@/routes';
 import type { BreadcrumbItem } from '@/types';
 
 interface Student {

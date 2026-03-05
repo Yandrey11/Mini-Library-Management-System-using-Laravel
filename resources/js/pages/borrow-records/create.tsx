@@ -1,9 +1,6 @@
 import { Head, Link, useForm } from '@inertiajs/react';
-import AppLayout from '@/layouts/app-layout';
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import {
     Card,
     CardContent,
@@ -11,6 +8,8 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import {
     Select,
     SelectContent,
@@ -18,8 +17,9 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
-import { index as indexRoute, store } from '@/routes/borrow-records';
+import AppLayout from '@/layouts/app-layout';
 import { dashboard } from '@/routes';
+import { index as indexRoute, store } from '@/routes/borrow-records';
 import type { BreadcrumbItem } from '@/types';
 
 interface Student {
@@ -33,6 +33,11 @@ interface Book {
 }
 
 interface BorrowItem {
+    book_id: number | '';
+    quantity: number;
+}
+
+interface BorrowItemPayload {
     book_id: number;
     quantity: number;
 }
@@ -56,13 +61,13 @@ export default function BorrowRecordsCreate({
         student_id: '' as string | number,
         borrow_date: today,
         due_date: today,
-        items: [{ book_id: '' as number | '', quantity: 1 }] as BorrowItem[],
+        items: [{ book_id: '', quantity: 1 }] as BorrowItem[],
     });
 
     const addItem = () => {
         setData('items', [
             ...data.items,
-            { book_id: '' as number | '', quantity: 1 },
+            { book_id: '', quantity: 1 },
         ]);
     };
 
@@ -84,7 +89,8 @@ export default function BorrowRecordsCreate({
     };
 
     const validItems = data.items.filter(
-        (i) => i.book_id !== '' && i.book_id !== undefined && i.quantity > 0
+        (i): i is BorrowItemPayload =>
+            typeof i.book_id === 'number' && i.quantity > 0
     );
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -98,7 +104,9 @@ export default function BorrowRecordsCreate({
                 book_id: i.book_id,
                 quantity: i.quantity,
             })),
-        })).post(store.url());
+        }));
+
+        post(store.url());
     };
 
     return (

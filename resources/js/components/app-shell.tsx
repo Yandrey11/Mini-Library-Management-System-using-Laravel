@@ -12,9 +12,18 @@ export function AppShell({ children, variant = 'header' }: Props) {
 
     if (variant === 'header') {
         return (
-            <div className="flex min-h-screen w-full flex-col">{children}</div>
+            <div className="flex min-h-screen w-full flex-col bg-gradient-to-b from-amber-50/80 via-white to-stone-50 dark:from-stone-950 dark:via-stone-900 dark:to-stone-950">
+                {children}
+            </div>
         );
     }
 
-    return <SidebarProvider defaultOpen={isOpen}>{children}</SidebarProvider>;
+    return (
+        <SidebarProvider
+            defaultOpen={isOpen}
+            className="bg-gradient-to-b from-amber-50/80 via-white to-stone-50 dark:from-stone-950 dark:via-stone-900 dark:to-stone-950"
+        >
+            {children}
+        </SidebarProvider>
+    );
 }

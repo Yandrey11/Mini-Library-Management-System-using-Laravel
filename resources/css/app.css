@@ -5,18 +5,18 @@
 @layer base {
     :root {
         --background: oklch(1 0 0);
-        --foreground: oklch(0.145 0 0);
-        --border: oklch(0.922 0 0);
+        --foreground: oklch(0.21 0.01 67);
+        --border: oklch(0.9 0.01 80);
     }
 
     .dark {
-        --background: oklch(0.145 0 0);
-        --foreground: oklch(0.985 0 0);
-        --border: oklch(0.269 0 0);
+        --background: oklch(0.21 0.01 67);
+        --foreground: oklch(0.96 0.01 80);
+        --border: oklch(0.34 0.01 80);
     }
 
     * {
-        @apply border-gray-200 dark:border-gray-700;
+        @apply border-stone-200 dark:border-stone-800;
     }
 
     html {
@@ -24,6 +24,6 @@
     }
 
     body {
-        @apply bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-full w-full;
+        @apply min-h-full w-full bg-gradient-to-b from-amber-50/80 via-white to-stone-50 text-stone-900 dark:from-stone-950 dark:via-stone-900 dark:to-stone-950 dark:text-stone-100;
     }
 }
