@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateBookRequest;
 use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -45,14 +46,16 @@ class BookController extends Controller
         $totalInventory = (int) ($validated['total_inventory'] ?? 0);
         $authorIds = $validated['author_ids'] ?? [];
 
-        $book = Book::create([
-            'title' => $validated['title'],
-            'isbn' => $validated['isbn'] ?? null,
-            'total_inventory' => $totalInventory,
-            'available_inventory' => $totalInventory,
-        ]);
+        DB::transaction(function () use ($validated, $totalInventory, $authorIds): void {
+            $book = Book::create([
+                'title' => $validated['title'],
+                'isbn' => $validated['isbn'] ?? null,
+                'total_inventory' => $totalInventory,
+                'available_inventory' => $totalInventory,
+            ]);
 
-        $book->authors()->sync($authorIds);
+            $book->authors()->sync($authorIds);
+        });
 
         return redirect()->route('books.index')
             ->with('success', 'Book created successfully.');
@@ -99,13 +102,15 @@ class BookController extends Controller
                 ->with('error', 'Total inventory cannot be less than available inventory (currently borrowed).');
         }
 
-        $book->update([
-            'title' => $validated['title'],
-            'isbn' => $validated['isbn'] ?? null,
-            'total_inventory' => $totalInventory,
-        ]);
+        DB::transaction(function () use ($book, $validated, $totalInventory, $authorIds): void {
+            $book->update([
+                'title' => $validated['title'],
+                'isbn' => $validated['isbn'] ?? null,
+                'total_inventory' => $totalInventory,
+            ]);
 
-        $book->authors()->sync($authorIds);
+            $book->authors()->sync($authorIds);
+        });
 
         return redirect()->route('books.index')
             ->with('success', 'Book updated successfully.');
